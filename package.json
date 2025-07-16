@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "seed:db": "npx ts-node src/scripts/seed.ts",
+    "update:db": "npx prisma db push",
     "start": "npx ts-node src/index.ts"
   },
   "type": "commonjs",
@@ -17,7 +18,8 @@
     "@graphql-tools/merge": "^9.0.24",
     "@prisma/client": "^6.11.1",
     "apollo-server": "^3.13.0",
-    "graphql": "^16.11.0"
+    "graphql": "^16.11.0",
+    "graphql-tag": "^2.12.6"
   },
   "devDependencies": {
     "@types/node": "^24.0.13",

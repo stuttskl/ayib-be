@@ -1,0 +1,16 @@
+type Shelf {
+  id: String!
+  name: String!
+  color: String!
+  books: [Book!]!
+  createdAt: String!
+}
+
+extend type Query {
+  shelves: [Shelf!]!
+  shelf(id: String!): Shelf
+}
+
+extend type Mutation {
+  addBookToShelf(bookId: String!, shelfId: String!): Shelf!
+}

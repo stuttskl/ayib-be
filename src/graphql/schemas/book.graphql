@@ -7,12 +7,12 @@ type Book {
   completedOn: String
 }
 
-type Query {
+extend type Query {
   books: [Book!]!
   book(id: String!): Book
 }
 
-type Mutation {
+extend type Mutation {
   createBook(
     title: String!
     author: String!

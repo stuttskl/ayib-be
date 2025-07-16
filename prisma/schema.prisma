@@ -21,4 +21,16 @@ model Book {
   rating      Int?
   completedOn DateTime?
   createdAt   DateTime @default(now())
+
+  shelfId     String?    // FK column
+  shelf       Shelf?     @relation(fields: [shelfId], references: [id])
+}
+
+
+model Shelf {
+  id        String   @id @default(uuid())
+  name      String
+  color     String
+  books     Book[]   // one-to-many relationship
+  createdAt DateTime @default(now())
 }

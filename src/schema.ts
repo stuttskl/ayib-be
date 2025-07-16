@@ -1,26 +1,15 @@
+import fs from "fs";
+import path from "path";
 import { gql } from "apollo-server";
 
-export const typeDefs = gql`
-  type Book {
-    id: String!
-    createdAt: String!
-    title: String!
-    author: String!
-    rating: Int
-    completedOn: String
-  }
+const schemaDir = path.join(__dirname, "graphql/schemas");
 
-  type Query {
-    books: [Book!]!
-    book(id: String!): Book
-  }
+const typeDefs = gql(
+  fs
+    .readdirSync(schemaDir)
+    .filter((file) => file.endsWith(".graphql"))
+    .map((file) => fs.readFileSync(path.join(schemaDir, file), "utf8"))
+    .join("\n")
+);
 
-  type Mutation {
-    createBook(
-      title: String!
-      author: String!
-      rating: Int
-      completedOn: String
-    ): Book!
-  }
-`;
+export { typeDefs };

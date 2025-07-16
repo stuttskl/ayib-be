@@ -3,7 +3,36 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 const main = async () => {
-  await prisma.book.deleteMany(); // clear existing data
+  await prisma.shelf.deleteMany(); // clear existing data
+  await prisma.shelf.createMany({
+    data: [
+      {
+        color: "#F7B32B",
+        name: "Want to read",
+        createdAt: "2024-09-01T00:00:00.000Z",
+      },
+      {
+        color: "#A9E5BB",
+        name: "Currently reading",
+        createdAt: "2024-09-01T00:00:00.000Z",
+      },
+      {
+        color: "#E4572E",
+        name: "Already read",
+        createdAt: "2024-09-01T00:00:00.000Z",
+      },
+      {
+        color: "#2D1E2F",
+        name: "Didn't finish reading",
+        createdAt: "2024-09-01T00:00:00.000Z",
+      },
+      {
+        color: "#9E829C",
+        name: "Overflow",
+        createdAt: "2024-09-01T00:00:00.000Z",
+      },
+    ],
+  });
 
   await prisma.book.createMany({
     data: [

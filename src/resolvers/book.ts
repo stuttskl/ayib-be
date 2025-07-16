@@ -1,8 +1,7 @@
 import { PrismaClient } from "@prisma/client";
-
 const prisma = new PrismaClient();
 
-export const resolvers = {
+export const bookResolvers = {
   Query: {
     books: () => prisma.book.findMany(),
     book: (_: any, args: { id: string }) =>
@@ -28,5 +27,14 @@ export const resolvers = {
             : undefined,
         },
       }),
+    addBookToShelf: async (
+      _: any,
+      args: { bookId: string; shelfId: string }
+    ) => {
+      return prisma.book.update({
+        where: { id: args.bookId },
+        data: { shelfId: args.shelfId },
+      });
+    },
   },
 };
